@@ -2,8 +2,8 @@
   <nav>
     <router-link to="/">Home</router-link>
     <router-link to="/about">About</router-link>
-    <router-link to="/">Login</router-link>
-    <router-link to="/">My Profile</router-link>
+    <router-link to="/login">Login</router-link>
+    <router-link to="/profile">My Profile</router-link>
   </nav>
   <router-view class="router-view" />
   <Footer class="footer"></Footer>
@@ -22,12 +22,11 @@
 
 nav {
   padding: 1rem;
-  
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: lightblue;
-
+  background-color: #5C6BC0;
+  color: #ffffff;
   &:last-child {
     padding-right: 0;
   }
@@ -36,11 +35,11 @@ nav {
 nav a {
   padding-left: 2rem;
   font-weight: bold;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #2c3e50;
 }
 </style>
 

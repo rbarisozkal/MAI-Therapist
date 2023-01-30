@@ -3,7 +3,10 @@
   <v-app>
     <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
       <div>
-        <v-btn v-for="icon in icons" :key="icon" class="mx-4" :icon="icon" variant="text"></v-btn>
+        <v-btn v-for="icon in icons" :key="icon" class="mx-4" :color="white" :icon="icon" variant="text"><v-icon>
+          {{ icon }}
+        </v-icon>
+      </v-btn>
       </div>
       <v-icon
         large
@@ -42,5 +45,8 @@ export default {
 <style>
 .v-footer{
   max-height:unset;
+}
+.v-application__wrap{
+  min-height:max-content !important;
 }
 </style>

@@ -5,10 +5,12 @@ import store from "./store";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import awsconfig from "./aws-exports";
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import {
   applyPolyfills,
   defineCustomElements,
 } from "@aws-amplify/ui-components/loader";
+import '@mdi/font/css/materialdesignicons.css'
 Amplify.configure(awsconfig);
 import "vuetify/styles";
 import { createVuetify } from "vuetify";

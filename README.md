@@ -17,6 +17,13 @@ After installing amplify, you will run this command to run the project on your l
 yarn serve
 ```
 
+### Styling (UI) Libraries are
+ Vuetify 3.
+ https://next.vuetifyjs.com/en/components/all/
+
+Material Design Icons
+https://pictogrammers.com/library/mdi/
+
 ### Compiles and minifies for production
 ```
 yarn build
