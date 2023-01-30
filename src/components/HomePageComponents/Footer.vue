@@ -4,16 +4,11 @@
     <v-footer class="bg-indigo-lighten-1 text-center d-flex flex-column">
       <div>
         <v-btn v-for="icon in icons" :key="icon" class="mx-4" :color="white" :icon="icon" variant="text"><v-icon>
-          {{ icon }}
-        </v-icon>
-      </v-btn>
+            {{ icon }}
+          </v-icon>
+        </v-btn>
       </div>
-      <v-icon
-        large
-        @click="next"
-      >
-        mdi-chevron-right
-      </v-icon>
+
       <div class="pt-0">
         Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut
         risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui.
@@ -43,10 +38,11 @@ export default {
 }
 </script>
 <style>
-.v-footer{
-  max-height:unset;
+.v-footer {
+  max-height: unset;
 }
-.v-application__wrap{
-  min-height:max-content !important;
+
+.v-application__wrap {
+  min-height: max-content !important;
 }
 </style>
