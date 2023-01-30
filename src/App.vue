@@ -4,6 +4,7 @@
     <router-link to="/about">About</router-link>
     <router-link to="/login">Login</router-link>
     <router-link to="/profile">My Profile</router-link>
+    <router-link to="/register">Register</router-link>
   </nav>
   <router-view class="router-view" />
   <Footer class="footer"></Footer>
@@ -16,13 +17,13 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  
+
 }
+
 * {
-  box-sizing: border-box;
-  /*disable scroll*/
-  
-  
+
+  font-family: 'Manrope', sans-serif;
+
 }
 
 nav {
@@ -32,6 +33,7 @@ nav {
   justify-content: flex-end;
   background-color: #5C6BC0;
   color: #ffffff;
+
   &:last-child {
     padding-right: 0;
   }
@@ -55,5 +57,18 @@ export default {
   components: {
     Footer,
   },
+  data() {
+    return {
+      msg: "Welcome to Your Vue.js App",
+    };
+  },
+  
+  methods: {
+    
+  },
+  created() {
+    
+  },
+
 };
 </script>
