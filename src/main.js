@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 import app from "./App.vue";
 import router from "./router";
-import store from "./store";
 import { Amplify } from "aws-amplify";
 import awsExports from "./aws-exports";
 import awsconfig from "./aws-exports";
@@ -25,4 +24,4 @@ const vuetify = createVuetify({
   components,
   directives,
 });
-createApp(app).use(store).use(router).use(vuetify).mount("#app");
+createApp(app).use(router).use(vuetify).mount("#app");
