@@ -2,11 +2,11 @@
   <div>
     <nav>
       <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link :to="isUserLoggedInNavigateLogin">{{ checkUserLoggedIn }}</router-link>
+      <router-link v-if="!isUserLoggedIn" to="/about">About</router-link>
       <router-link to="/profile">My Profile</router-link>
       <router-link :to="isUserLoggedInNavigate">{{ checkRegisterStatus }}</router-link>
-    </nav>
+      <router-link :to="isUserLoggedInNavigateLogin">{{ checkUserLoggedIn }}</router-link>
+     </nav>
     <router-view class="router-view" />
     <Footer />
   </div>
@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      isUserLoggedIn: true,
+      isUserLoggedIn: false,
     };
   },
 
@@ -83,7 +83,7 @@ export default {
       return this.isUserLoggedIn ? '/dashboard' : '/register';
     },
     isUserLoggedInNavigateLogin() {
-      return this.isUserLoggedIn ? '/login' : '/logout';
+      return this.isUserLoggedIn ? '/logout' : '/login';
     }
   }
 
