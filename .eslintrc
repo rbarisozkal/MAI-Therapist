@@ -5,7 +5,7 @@
     "node": true
   },
   "extends": ["eslint:recommended", "plugin:vue/vue3-recommended", "prettier"],
-  "plugins": [],
+  "plugins": ["prettier"],
   "rules": {
     "vue/multi-word-component-names": "off",
     "vue/no-multiple-template-root": "off",
