@@ -1,13 +1,15 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/about">About</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/profile">My Profile</router-link>
-    <router-link to="/register">Register</router-link>
-  </nav>
-  <router-view class="router-view" />
-  <Footer class="footer"></Footer>
+  <div>
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+      <router-link :to="isUserLoggedInNavigateLogin">{{ checkUserLoggedIn }}</router-link>
+      <router-link to="/profile">My Profile</router-link>
+      <router-link :to="isUserLoggedInNavigate">{{ checkRegisterStatus }}</router-link>
+    </nav>
+    <router-view class="router-view" />
+    <Footer />
+  </div>
 </template>
 
 <style lang="scss">
@@ -60,15 +62,30 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
+      isUserLoggedIn: true,
     };
   },
-  
+
   methods: {
-    
+
   },
   created() {
-    
+
   },
+  computed: {
+    checkRegisterStatus() {
+      return this.isUserLoggedIn ? 'My Dashboard' : 'Register';
+    },
+    checkUserLoggedIn() {
+      return this.isUserLoggedIn ? 'Logout' : 'Login';
+    },
+    isUserLoggedInNavigate() {
+      return this.isUserLoggedIn ? '/dashboard' : '/register';
+    },
+    isUserLoggedInNavigateLogin() {
+      return this.isUserLoggedIn ? '/login' : '/logout';
+    }
+  }
 
 };
 </script>
