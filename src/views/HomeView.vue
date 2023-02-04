@@ -6,11 +6,12 @@
 
 <script>
 // @ is an alias to /src
-import Welcome from '@/components/HomePageComponents/Welcome.vue'
+import HelloWorld from "@/components/HelloWorld.vue";
+import Welcome from "@/components/HomePageComponents/Welcome.vue";
 export default {
-  name: 'HomeView',
+  name: "HomeView",
   components: {
-    Welcome,
+    HelloWorld,Welcome
   },
-}
+};
 </script>

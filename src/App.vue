@@ -7,26 +7,8 @@
     <router-link to="/register">Register</router-link>
   </nav>
   <router-view class="router-view" />
-  <FooterComp class="footer"></FooterComp>
+  <Footer class="footer"></Footer>
 </template>
-
-<script>
-import FooterComp from './components/HomePageComponents/Footer.vue'
-export default {
-  name: 'App',
-  components: {
-    FooterComp,
-  },
-  data() {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-    }
-  },
-  created() {},
-
-  methods: {},
-}
-</script>
 
 <style lang="scss">
 #app {
@@ -35,10 +17,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
 }
 
 * {
+
   font-family: 'Manrope', sans-serif;
+
 }
 
 nav {
@@ -46,7 +31,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: #5c6bc0;
+  background-color: #5C6BC0;
   color: #ffffff;
 
   &:last-child {
@@ -64,3 +49,26 @@ nav a.router-link-exact-active {
   color: #2c3e50;
 }
 </style>
+
+<script>
+import Footer from "./components/HomePageComponents/Footer.vue";
+export default {
+  name: "App",
+  components: {
+    Footer,
+  },
+  data() {
+    return {
+      msg: "Welcome to Your Vue.js App",
+    };
+  },
+  
+  methods: {
+    
+  },
+  created() {
+    
+  },
+
+};
+</script>
