@@ -1,32 +1,41 @@
-<template>
-  <div>
+<template id="app">
+  <div class="container">
     <nav>
       <router-link to="/">Home</router-link>
-      <router-link v-if="!isUserLoggedIn" to="/about">About</router-link>
+      <router-link to="/about">About</router-link>
+      <router-link :to="isUserLoggedIn ? '/login' : '/logout'">{{ checkUserLoggedIn }}</router-link>
       <router-link to="/profile">My Profile</router-link>
-      <router-link :to="isUserLoggedInNavigate">{{
-        checkRegisterStatus
-      }}</router-link>
-      <router-link :to="isUserLoggedInNavigateLogin">{{
-        checkUserLoggedIn
-      }}</router-link>
+      <router-link :to="isUserLoggedIn ? '/dashboard' : 'register'">{{ checkRegisterStatus }}</router-link>
     </nav>
     <router-view class="router-view" />
     <Footer />
   </div>
 </template>
 
-<style lang="scss">
-#app {
+<style scoped lang="scss">
+.container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  //second element is body, element so it has to be bigger than footer
+  //so that footer is always at the bottom
+  & .v-application {
+    flex-grow: inherit;
+  }
+
 }
 
 * {
-  font-family: "Manrope", sans-serif;
+
+  font-family: 'Manrope', sans-serif;
+
 }
 
 nav {
@@ -34,7 +43,7 @@ nav {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  background-color: #5c6bc0;
+  background-color: #5C6BC0;
   color: #ffffff;
 
   &:last-child {
@@ -54,7 +63,7 @@ nav a.router-link-exact-active {
 </style>
 
 <script>
-import Footer from "./components/HomePageComponents/Footer.vue"
+import Footer from "./components/HomePageComponents/Footer.vue";
 export default {
   name: "App",
   components: {
@@ -63,25 +72,24 @@ export default {
   data() {
     return {
       msg: "Welcome to Your Vue.js App",
-      isUserLoggedIn: false,
-    }
+      isUserLoggedIn: true,
+    };
   },
 
-  methods: {},
-  created() {},
+  methods: {
+
+  },
+  created() {
+
+  },
   computed: {
     checkRegisterStatus() {
-      return this.isUserLoggedIn ? "My Dashboard" : "Register"
+      return this.isUserLoggedIn ? 'Dashboard' : 'Register';
     },
     checkUserLoggedIn() {
-      return this.isUserLoggedIn ? "Logout" : "Login"
-    },
-    isUserLoggedInNavigate() {
-      return this.isUserLoggedIn ? "/dashboard" : "/register"
-    },
-    isUserLoggedInNavigateLogin() {
-      return this.isUserLoggedIn ? "/logout" : "/login"
-    },
-  },
-}
+      return this.isUserLoggedIn ? 'Logout' : 'Login';
+    }
+  }
+
+};
 </script>
