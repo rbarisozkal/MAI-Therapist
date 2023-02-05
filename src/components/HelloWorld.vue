@@ -1,22 +1,22 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-
   </div>
 </template>
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
-    msg: String,
+    msg: {
+      type: String,
+      default: 'Welcome to Your Vue.js App',
+    },
   },
-  data(){
-    return{
-      
-    }
-  }
-};
+  data() {
+    return {}
+  },
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
