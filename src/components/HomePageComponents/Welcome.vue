@@ -2,7 +2,7 @@
   <v-app>
     <v-parallax
       class="parallax-container"
-      height="1100"
+      
       :src="maiTherapistImage"
     >
       <div class="flex-column align-center text-white">
@@ -29,6 +29,29 @@
         </div>
       </v-carousel-item>
     </v-carousel>
+    <div class="howto-card">
+    <v-container >
+      <v-row style="margin-bottom: 350px;">
+        <v-col>
+          
+            <h1 class="header">
+              HOW TO USE?
+            </h1>
+            <p class="text">
+              
+            </p>
+           
+        </v-col>
+      </v-row>
+      <v-row style=""> 
+        <v-col>
+            <v-btn size="x-large" color="success" @click="$router.push('/about')">
+              GET STARTED
+            </v-btn>
+          </v-col>   
+          </v-row>
+    </v-container>
+  </div>
     <HelloWorld />
   </v-app>
 </template>
@@ -79,6 +102,7 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   width: 60%;
+  height: 1000;
 
   & .header {
     color: #ffffff;
@@ -90,5 +114,13 @@ export default {
     text-align: start;
     font-size: 1.2rem;
   }
+} 
+
+.howto-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  background-color: #ACE1AF;
 }
 </style>
