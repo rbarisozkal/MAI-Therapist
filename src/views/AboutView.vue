@@ -1,5 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Pricing/>
   </div>
 </template>
+
+<script>
+// @ is an alias to /src
+import Pricing from '@/components/AboutComponents/Pricing.vue'
+export default {
+  name: 'AboutView',
+  components: {
+    Pricing,
+  },
+}
+</script>
