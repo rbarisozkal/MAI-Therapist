@@ -1,20 +1,18 @@
 <template id="app">
   <div class="container">
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-      <router-link :to="isUserLoggedIn ? '/login' : '/logout'">{{ checkUserLoggedIn }}</router-link>
-      <router-link to="/profile">My Profile</router-link>
-      <router-link :to="isUserLoggedIn ? '/dashboard' : 'register'">{{ checkRegisterStatus }}</router-link>
-    </nav>
-    <router-view class="router-view" />
-    <Footer />
+    <v-app>
+      <Navbar />
+      <v-content>
+        <router-view class="router-view" />
+      </v-content>
+      <Footer />
+    </v-app>
+    <div id="snackbar-container"></div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .container {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -29,67 +27,44 @@
   & .v-application {
     flex-grow: inherit;
   }
-
-}
-
-* {
-
-  font-family: 'Manrope', sans-serif;
-
-}
-
-nav {
-  padding: 1rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  background-color: #5C6BC0;
-  color: #ffffff;
-
-  &:last-child {
-    padding-right: 0;
-  }
-}
-
-nav a {
-  padding-left: 2rem;
-  font-weight: bold;
-  color: #ffffff;
-}
-
-nav a.router-link-exact-active {
-  color: #2c3e50;
 }
 </style>
 
-<script>
-import Footer from "./components/HomePageComponents/Footer.vue";
-export default {
-  name: "App",
-  components: {
-    Footer,
-  },
-  data() {
-    return {
-      msg: "Welcome to Your Vue.js App",
-      isUserLoggedIn: true,
-    };
-  },
+<script setup>
+import Footer from "./components/HomePageComponents/Footer.vue"
+import Navbar from "./components/Navbar.vue"
 
-  methods: {
+import { useAuthStore } from "@/stores/auth"
+import { computed, ref } from "vue"
 
-  },
-  created() {
-
-  },
-  computed: {
-    checkRegisterStatus() {
-      return this.isUserLoggedIn ? 'Dashboard' : 'Register';
+const auth = useAuthStore()
+const sidebar = ref(false)
+const menuItems = computed(() =>
+  [
+    {
+      path: "/",
+      title: "Home",
     },
-    checkUserLoggedIn() {
-      return this.isUserLoggedIn ? 'Logout' : 'Login';
-    }
-  }
+    {
+      path: "/about",
+      title: "About",
+    },
+    {
+      path: auth.user ? "/logout" : "/login",
+      title: auth.user ? "Logout" : "Login",
+    },
+    {
+      path: auth.user ? "/dashboard" : "/register",
+      title: auth.user ? "Dashboard" : "Register",
+    },
+    auth.user
+      ? {
+          path: "/profile",
+          title: "My Profile",
+        }
+      : null,
+  ].filter(Boolean)
+)
 
-};
+const appTitle = "Vue 3 + Vuetify 3 + Firebase"
 </script>

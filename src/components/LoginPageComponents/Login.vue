@@ -1,67 +1,80 @@
 <template>
-    <div>
-        <authenticator :services="services" initial-state="signUp">
-            <template v-slot="{ user, signOut }">
-                <h1>Hello {{ user.attributes.email }}!</h1>
-                <button @click="signOut">Sign Out</button>
-            </template>
-        </authenticator>
-    </div>
+  <div>
+    <v-container>
+      <v-row>
+        <v-col cols="12" sm="6" offset-sm="3" style="width: 100%">
+          <v-form>
+            <div v-if="!useAuth.stepConfirmCode">
+              <v-text-field
+                v-model="user.email"
+                label="Email"
+                type="email"
+                required
+                style="width: 500px"
+                error="Please enter a valid email address"
+              />
+              <v-text-field
+                v-model="user.password"
+                label="Password"
+                type="password"
+                required
+                style="width: 500px"
+                error="Please enter a valid password"
+              />
+            </div>
+            <div v-else-if="useAuth.stepConfirmCode">
+              <v-text-field
+                v-model="user.confirmCode"
+                label="Confirmation Code"
+                type="text"
+                required
+                style="width: 500px"
+                error="Please enter a valid confirmation code"
+              />
+            </div>
+            <v-btn
+              color="primary"
+              v-if="!useAuth.stepConfirmCode"
+              @click="submitForm"
+            >
+              Submit
+            </v-btn>
+          </v-form>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
+
 <style>
 .v-form {
-    width: 100%;
-    height: auto;
-    padding: 10rem 16rem 10rem 16rem;
+  width: 100%;
+  height: auto;
+  padding: 10rem 16rem 10rem 16rem;
 }
 </style>
-<script>
-import { Authenticator } from "@aws-amplify/ui-vue"
-import "@aws-amplify/ui-vue/styles.css"
-import { useAuthenticator } from "@aws-amplify/ui-vue"
-import { Amplify } from "aws-amplify"
-import awsconfig from "@/aws-exports"
-import { Auth } from 'aws-amplify';
-Amplify.configure(awsconfig);
+<script setup>
+import useSnackbar from "@/composables/useSnackbar"
+import { useAuthStore } from "@/stores/auth"
+import { reactive } from "vue"
 
-const user = useAuthenticator({
+const useAuth = useAuthStore()
 
-});
-console.log(user);
+const user = reactive({
+  email: "",
+  password: "",
+})
 
-const services = {
-    async handleSignUp(formData) {
-        let { username, password, attributes } = formData;
-        // custom username
-        username = username.toLowerCase();
-        attributes.email = attributes.email.toLowerCase();
-        const result = await Auth.signUp({
-            username,
-            password,
-            attributes,
-            autoSignIn: {
-                enabled: true,
-            },
-        });
-        console.log(result);
-    },
-
-};
-const emitUserData = () => {
-    this.$emit('userData', user);
+async function submitForm() {
+  useAuth.signIn(user)
 }
-export default {
-    name: "Login",
-    components: {
-
-    },
-    data() {
-        return { user, emitUserData }
-    }
-
-
-};
 </script>
-<style>
 
+<style>
+.v-form {
+  width: 100%;
+  height: auto;
+  padding: 10rem 16rem 10rem 16rem;
+}
 </style>
+<style></style>

@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "../views/HomeView.vue"
 import LoginView from "../views/LoginView.vue"
 import RegisterView from "../views/RegisterView.vue"
+import { Auth } from "aws-amplify"
+import { useAuthStore } from "@/stores/auth"
 
 const routes = [
   {
@@ -13,6 +15,9 @@ const routes = [
     path: "/login",
     name: "LoginView",
     component: LoginView,
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/register",
@@ -22,17 +27,37 @@ const routes = [
   {
     path: "/about",
     name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    meta: {
+      requiresAuth: true,
+    },
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+    component: () => import("../views/LogoutView.vue"),
   },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+})
+
+router.beforeEach(async (to, from, next) => {
+  console.log("to", to)
+  console.log("from", from)
+  let user = useAuthStore().user
+  if (!user) {
+    try {
+      user = await Auth.currentAuthenticatedUser()
+      useAuthStore().user = user
+    } catch (error) {
+      console.log("error", error)
+    }
+  }
+  next()
 })
 
 export default router
