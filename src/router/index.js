@@ -1,9 +1,11 @@
-import { createRouter, createWebHistory } from "vue-router"
-import HomeView from "../views/HomeView.vue"
-import LoginView from "../views/LoginView.vue"
-import RegisterView from "../views/RegisterView.vue"
-import { Auth } from "aws-amplify"
-import { useAuthStore } from "@/stores/auth"
+import { createRouter, createWebHistory } from "vue-router";
+import HomeView from "../views/HomeView.vue";
+import LoginView from "../views/LoginView.vue";
+import RegisterView from "../views/RegisterView.vue";
+import DashboardView from "../views/DashboardView.vue";
+import { Auth } from "aws-amplify";
+import { useAuthStore } from "@/stores/auth";
+import LogoutView from "@/views/LogoutView.vue";
 
 const routes = [
   {
@@ -36,28 +38,40 @@ const routes = [
   {
     path: "/logout",
     name: "Logout",
-    component: () => import("../views/LogoutView.vue"),
+    component: LogoutView,
+    meta: {
+      requiresAuth: true,
+    },
   },
-]
+  {
+    //create a dashboard view for loggedin users. it has id parameter
+    path: "/dashboard/:id",
+    name: "DashboardView",
+    component: DashboardView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
 router.beforeEach(async (to, from, next) => {
-  console.log("to", to)
-  console.log("from", from)
-  let user = useAuthStore().user
+  console.log("to", to);
+  console.log("from", from);
+  let user = useAuthStore().user;
   if (!user) {
     try {
-      user = await Auth.currentAuthenticatedUser()
-      useAuthStore().user = user
+      user = await Auth.currentAuthenticatedUser();
+      useAuthStore().user = user;
     } catch (error) {
-      console.log("error", error)
+      console.log("error", error);
     }
   }
-  next()
-})
+  next();
+});
 
-export default router
+export default router;

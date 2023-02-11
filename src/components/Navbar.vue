@@ -1,11 +1,6 @@
 <template>
   <div>
-    <v-app-bar
-      class="px-10"
-      color="deep-purple accent-4 position-relative"
-      dark
-      prominent
-    >
+    <v-app-bar class="px-10" color="deep-purple accent-4 position-relative" dark prominent>
       <div class="d-md-none d-lg-flex">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       </div>
@@ -15,11 +10,7 @@
       <v-spacer></v-spacer>
 
       <div class="link-list d-sm-none d-md-flex">
-        <router-link
-          v-for="item in menuItems"
-          :key="item.title"
-          :to="item.path"
-        >
+        <router-link v-for="item in menuItems" :key="item.title" :to="item.path">
           {{ item.title }}
         </router-link>
       </div>
@@ -27,12 +18,9 @@
 
     <v-navigation-drawer v-model="drawer" absolute bottom temporary>
       <v-list nav dense>
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
-        >
+        <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
           <v-list-item>
-            <v-list-item-title v-for="link in menuItems">
+            <v-list-item-title :key="link" v-for="link in menuItems">
               <router-link :to="link.path">
                 {{ link.title }}
               </router-link>
@@ -67,14 +55,14 @@ const menuItems = computed(() =>
       title: auth.user ? "Logout" : "Login",
     },
     {
-      path: auth.user ? "/dashboard" : "/register",
+      path: auth.user ? "/dashboard/" + auth.user.username : "/register",
       title: auth.user ? "Dashboard" : "Register",
     },
     auth.user
       ? {
-          path: "/profile",
-          title: "My Profile",
-        }
+        path: "/profile",
+        title: "My Profile",
+      }
       : null,
   ].filter(Boolean)
 )
@@ -88,12 +76,14 @@ const appTitle = "MaiTherapist"
   gap: 1rem;
   align-items: center;
   justify-content: center;
+
   & a {
     color: white;
     text-decoration: none;
     font-size: 1.2rem;
     font-weight: 500;
   }
+
   & a:hover {
     color: #f5f5f5;
   }

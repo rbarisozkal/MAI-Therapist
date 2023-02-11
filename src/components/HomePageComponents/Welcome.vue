@@ -1,22 +1,13 @@
 <template>
   <v-app>
-    <v-parallax
-      class="parallax-container"
-      height="900"
-      :src="maiTherapistImage"
-    >
+    <v-parallax class="parallax-container" height="900" :src="maiTherapistImage">
       <div class="flex-column align-center ">
         <h1 class="header text-h2 mt-5 ">MAI Therapist</h1>
         <h4 class="subheading ">Revolutionizing Mental Health with MAI</h4>
       </div>
     </v-parallax>
     <v-carousel height="800">
-      <v-carousel-item
-        v-for="(item, i) in items"
-        :key="i"
-        :src="item.src"
-        cover
-      >
+      <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src" cover>
         <div class="d-flex fill-height justify-center align-center">
           <div class="intro-card">
             <h2 class="header">
@@ -29,27 +20,19 @@
         </div>
       </v-carousel-item>
     </v-carousel>
-    
 
-    <v-parallax
-      class="parallax-container"
-      height="800"
-      :src="howToImage"
-    >
+
+    <v-parallax class="parallax-container" height="800" :src="howToImage">
       <div class="flex-column align-center">
         <h1 class="header text-h2 mt-10">HOW TO USE?</h1>
-        
+
       </div>
       <div class="bottom-button">
-      <v-btn size="x-large" color="success" @click="$router.push('/about')">
-              GET STARTED
-      </v-btn>
-    </div>
+        <v-btn size="x-large" color="success" @click="$router.push('/about')">
+          GET STARTED
+        </v-btn>
+      </div>
     </v-parallax>
-
-
-
-    <HelloWorld />
   </v-app>
 </template>
 <script>
@@ -118,7 +101,7 @@ export default {
     padding: 10px;
     background-color: rgba($color: #ADD8E6, $alpha: 0.5);
   }
-} 
+}
 
 .howto-card {
   display: flex;
@@ -127,7 +110,7 @@ export default {
   height: 600px;
 }
 
-.bottom-button{
+.bottom-button {
   position: absolute;
   bottom: 50px;
   left: 45%;
