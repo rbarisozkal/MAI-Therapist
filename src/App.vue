@@ -2,22 +2,23 @@
   <div class="container">
     <v-app>
       <Navbar />
-      <v-content>
-        <router-view class="router-view" />
-      </v-content>
+      <router-view class="router-view" />
       <Footer />
     </v-app>
-    <div id="snackbar-container"></div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.router-view {
+  flex-grow: 1000;
+}
+
 .container {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,8 +26,19 @@
   //second element is body, element so it has to be bigger than footer
   //so that footer is always at the bottom
   & .v-application {
-    flex-grow: inherit !important;
+    min-height: unset !important;
+
+    & .v-application__wrap {
+      min-height: unset !important;
+      color: red;
+    }
+
   }
+}
+</style>
+<style>
+::v-deep .v-application--wrap {
+  min-height: fit-content;
 }
 </style>
 

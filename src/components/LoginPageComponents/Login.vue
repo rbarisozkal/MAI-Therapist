@@ -46,15 +46,10 @@ const user = reactive({
 
 async function submitForm() {
   useAuth.signIn(user)
-  //getUser from auth store
-  //if user is null, show error
-  //if user is not null, show success
-
-
 }
 </script>
 
-<style>
+<style scoped>
 .v-form {
   width: 100%;
   height: auto;

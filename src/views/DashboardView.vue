@@ -1,39 +1,51 @@
 <template>
-    <v-app class="dashboard-container">
-        <v-card>
-            <v-layout>
-                <v-navigation-drawer permanent theme="dark">
-                    <v-list nav>
-                        <v-list-item prepend-icon="mdi-email" title="Inbox" value="inbox"></v-list-item>
-                        <v-list-item prepend-icon="mdi-account-supervisor-circle" title="My Patients"
-                            value="myPatients"></v-list-item>
-                        <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin"></v-list-item>
-                    </v-list>
-                </v-navigation-drawer>
-                <v-main style="height: 250px"></v-main>
-            </v-layout>
-        </v-card>
-    </v-app>
+    <div class="dashboard-view-container">
+        <Sidebar />
+        <Main :componentChoice='componentChoice' />
+    </div>
 </template>
 
-<script setup>
-
+<script>
+import Sidebar from '@/components/DashboardComponents/Sidebar.vue';
+import Main from '@/components/DashboardComponents/Main.vue';
 import { useAuthStore } from "@/stores/auth";
+export default {
+    name: "DashboardView",
+    components: {
+        Sidebar, Main
+    },
+    setup() {
+        const componentChoices = {
+            newPatient: "Enter New Patient",
+            myPatients: "My Patients",
+        }
+        const useAuth = useAuthStore();
+        const userInfo = useAuth.user.attributes.email;
+        return { useAuth, userInfo };
+    }
 
-const useAuth = useAuthStore();
-const userInfo = useAuth.user.attributes.email;
 
+}
 
 
 </script>
 
 <style lang="scss" scoped>
-.dashboard-container {
+.dashboard-view-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
     & * {
         border-radius: 0;
     }
+
+}
+
+.v-application {
+    & .v-application__wrap {
+        display: flex;
+        flex-direction: row;
+    }
+
 }
 </style>

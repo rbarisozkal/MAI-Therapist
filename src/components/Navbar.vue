@@ -37,9 +37,7 @@ import { useAuthStore } from "@/stores/auth"
 import { computed, ref } from "vue"
 
 const auth = useAuthStore()
-const userId = auth.user.username;
 
-console.log(userId)
 const drawer = ref(false)
 const group = ref(null)
 const menuItems = computed(() =>
@@ -57,7 +55,7 @@ const menuItems = computed(() =>
       title: auth.user ? "Logout" : "Login",
     },
     {
-      path: auth.user ? "/dashboard/" + userId : "/register",
+      path: auth.user ? "/dashboard/" + auth.user.username : "/register",
       title: auth.user ? "Dashboard" : "Register",
     },
     auth.user
