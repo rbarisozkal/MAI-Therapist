@@ -25,7 +25,7 @@
   //second element is body, element so it has to be bigger than footer
   //so that footer is always at the bottom
   & .v-application {
-    flex-grow: inherit;
+    flex-grow: inherit !important;
   }
 }
 </style>
@@ -50,7 +50,7 @@ const menuItems = computed(() =>
       title: "About",
     },
     {
-      path: auth.user ? "/logout" : "/login",
+      path: auth.user ? "/" : "/login",
       title: auth.user ? "Logout" : "Login",
     },
     {
@@ -59,12 +59,11 @@ const menuItems = computed(() =>
     },
     auth.user
       ? {
-          path: "/profile",
-          title: "My Profile",
-        }
+        path: "/profile",
+        title: "My Profile",
+      }
       : null,
   ].filter(Boolean)
 )
 
-const appTitle = "Vue 3 + Vuetify 3 + Firebase"
 </script>

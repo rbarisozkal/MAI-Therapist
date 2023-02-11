@@ -1,32 +1,45 @@
-import { defineStore } from "pinia"
-import { Auth } from "aws-amplify"
+import { defineStore } from "pinia";
+import { Auth } from "aws-amplify";
 
 export const useAuthStore = defineStore("auth", {
   state: () => ({
     user: null,
     stepConfirmCode: false,
+    isUserConfirmed: false,
   }),
-  getters: {},
+  getters: {
+    isSignedIn() {
+      return !!this.user;
+    },
+    getUser(user) {
+      this.user = user;
+    },
+  },
   actions: {
     async resendConfirmationCode(email) {
       try {
-        await Auth.resendSignUp(email)
-        console.log("code resent successfully")
+        await Auth.resendSignUp(email);
+        console.log("code resent successfully");
       } catch (err) {
-        console.log("error resending code: ", err)
+        console.log("error resending code: ", err);
       }
     },
     async confirmSignUp(email, confirmCode) {
       try {
-        const res = await Auth.confirmSignUp(email, confirmCode)
-        console.log("confirm sign up", res)
-        const x = await Auth.currentAuthenticatedUser()
-        this.user = x
-        console.log("x", xq)
+        const res = await Auth.confirmSignUp(email, confirmCode);
+        console.log("confirm sign up", res);
+        if (res === "SUCCESS") {
+          this.isUserConfirmed = true;
+          this.$router.push("/login");
+        }
+        const x = await Auth.currentAuthenticatedUser();
+        this.user = x;
+        console.log("x", xq);
       } catch (error) {
-        console.log("error confirming sign up", error)
+        console.log("error confirming sign up", error);
       }
     },
+
     async signUp(user) {
       try {
         const response = await Auth.signUp({
@@ -40,31 +53,36 @@ export const useAuthStore = defineStore("auth", {
           autoSignIn: {
             enabled: true,
           },
-        })
-        console.log("response", response)
-        this.stepConfirmCode = true
+        });
+        console.log("response", response);
+        this.stepConfirmCode = true;
       } catch (error) {
-        console.log("error signing up:", error)
+        console.log("error signing up:", error);
       }
     },
     async signIn(user) {
       try {
-        const response = await Auth.signIn(user.email, user.password)
-        this.user = response
+        const response = await Auth.signIn(user.email, user.password);
+        this.user = response;
+        this.$state.user = this.user;
+        this.$router.push({
+          name: "DashboardView",
+          params: { id: this.user.attributes.sub },
+        });
       } catch (error) {
-        console.log("error signing in", error)
+        console.log("error signing in", error);
       }
     },
     async signOut() {
       try {
-        await Auth.signOut()
-        this.user = null
-        console.log(this)
-        console.log(this.$router)
-        this.$router.push("/")
+        await Auth.signOut();
+        this.user = null;
+        console.log(this);
+        console.log(this.$router);
+        this.$router.push("/");
       } catch (error) {
-        console.log("error signing out: ", error)
+        console.log("error signing out: ", error);
       }
     },
   },
-})
+});

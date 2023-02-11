@@ -1,7 +1,7 @@
 <template>
   <div>
     <Login @userData="receiveUserData" />
-    <h1 v-if="userData">Hello akjsdh{{ userData.username }}!</h1>
+    <h1 v-if="userData">Hello{{ userData.username }}!</h1>
     {{ userData }}
   </div>
 </template>
