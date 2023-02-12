@@ -3,12 +3,13 @@ Back-end docs:
 Root url : https://1vfug9rbhd.execute-api.us-east-1.amazonaws.com/default
 
 Current API's:
-Creates a new patient with given body: POST ${rootUrl}/createPatient
-Updates the patient with given id with given body: PUT ${rootUrl}/updatePatient?id=${patientId}
-Get only one patient: GET ${rootUrl}?id=${patientId}
-Get all patients: GET ${rootUrl}
 
-
+| Description   |      URL      |
+|----------|:-------------:|
+| Creates a new patient with given body:  | POST ${rootUrl}/createPatient |
+| Updates the patient with given id with given body | PUT ${rootUrl}/updatePatient?id=${patientId}   |
+| Get only one patient: | GET ${rootUrl}?id=${patientId} |
+| Get all patients: | GET ${rootUrl} |
 # mai-therapist
 
 ## Project setup
