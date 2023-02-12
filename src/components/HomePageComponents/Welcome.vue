@@ -36,10 +36,9 @@
   </v-app>
 </template>
 <script>
-import HelloWorld from '../HelloWorld.vue'
 
 export default {
-  components: { HelloWorld },
+  components: {},
   data() {
     return {
       //source files ofc will be replaced xD
