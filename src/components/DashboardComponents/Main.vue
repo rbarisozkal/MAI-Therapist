@@ -6,7 +6,7 @@
     </div>
     <div v-else-if="chosenComponent === 'All Clients'">
         <v-container>
-            My Patients
+            {{ getAllPatients }}
         </v-container>
     </div>
     <div v-else-if="chosenComponent === 'Upload New Video'">
@@ -26,6 +26,7 @@ import { reactive } from 'vue';
 import { onMounted } from 'vue';
 import { state } from 'vue';
 import { useCommunicationStore } from '@/stores/communication';
+import { usePatientStore } from '@/stores/patientApi';
 export default {
 
     data() {
@@ -52,15 +53,15 @@ export default {
 
     setup() {
         const store = useCommunicationStore();
-
-        let chosenComponent = store.chosenComponent;
-        let operation = chosenComponent;
-        console.log("operation is " + operation)
-        return { operation };
+        const patientStore = usePatientStore();
+        patientStore.getAllPatients();
     },
     computed: {
         chosenComponent() {
             return useCommunicationStore().chosenComponent;
+        },
+        getAllPatients() {
+            return usePatientStore().getAllPatients;
         }
     },
     name: "Main",
