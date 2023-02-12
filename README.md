@@ -6,9 +6,9 @@ Current API's:
 
 | Description   |      URL      |
 |----------|:-------------:|
-| Creates a new patient with given body:  | POST ${rootUrl}/createPatient |
-| Updates the patient with given id with given body | PUT ${rootUrl}/updatePatient?id=${patientId}   |
-| Get only one patient: | GET ${rootUrl}?id=${patientId} |
+| Creates a new patient with given body:  | POST {rootUrl}/createPatient |
+| Updates the patient with given id with given body | PUT ${rootUrl}/updatePatient?id={patientId}   |
+| Get only one patient: | GET {rootUrl}?id={patientId} |
 | Get all patients: | GET ${rootUrl} |
 # mai-therapist
 
