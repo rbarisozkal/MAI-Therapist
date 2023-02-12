@@ -8,8 +8,8 @@ Current API's:
 |----------|:-------------:|
 | Creates a new patient with given body:  | POST {rootUrl}/createPatient |
 | Updates the patient with given id with given body | PUT ${rootUrl}/updatePatient?id={patientId}   |
-| Get only one patient: | GET {rootUrl}?id={patientId} |
-| Get all patients: | GET ${rootUrl} |
+| Get only one patient: | GET {rootUrl}/getPatient?id={patientId} |
+| Get all patients: | GET ${rootUrl}/getPatients |
 # mai-therapist
 
 ## Project setup
