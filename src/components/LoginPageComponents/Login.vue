@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="12" sm="6" offset-sm="3" style="width: 100%">
+        <v-col cols="12" sm="6" offset-sm="3" style="width: auto">
           <v-form>
             <div v-if="!useAuth.stepConfirmCode">
               <v-text-field v-model="user.email" label="Email" type="email" required style="width: 500px"
@@ -24,13 +24,6 @@
   </div>
 </template>
 
-<style>
-.v-form {
-  width: 100%;
-  height: auto;
-  padding: 10rem 16rem 10rem 16rem;
-}
-</style>
 <script setup>
 import useSnackbar from "@/composables/useSnackbar"
 import { useAuthStore } from "@/stores/auth"
@@ -53,9 +46,21 @@ async function submitForm() {
 .v-form {
   width: 100%;
   height: auto;
-  padding: 10rem 16rem 10rem 16rem;
 }
 </style>
 <style>
-
+/*
+assign container a background named therapist-login
+*/
+.therapist-login {
+  background-image: url("@/assets/therapist-login.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
