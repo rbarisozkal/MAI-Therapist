@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-row>
-        <v-col cols="12" sm="6" offset-sm="3" style="width: 100%">
+        <v-col style="width: 100%">
           <v-form>
             <div v-if="!useAuth.stepConfirmCode">
               <v-text-field v-model="user.email" label="Email" type="email" required style="width: 500px"
@@ -41,7 +41,6 @@
 .v-form {
   width: 100%;
   height: auto;
-  padding: 10rem 16rem 10rem 16rem;
 }
 </style>
 <script setup>
@@ -70,13 +69,6 @@ function confirmSignUp() {
 }
 </script>
 
-<style>
-.v-form {
-  width: 100%;
-  height: auto;
-  padding: 10rem 16rem 10rem 16rem;
-}
-</style>
 <style>
 
 </style>

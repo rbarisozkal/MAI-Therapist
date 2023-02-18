@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { useAuthStore } from "@/stores/auth";
+
 export const usePatientStore = defineStore("patientStore", {
   state: () => ({
     allPatients: null,
@@ -8,9 +10,11 @@ export const usePatientStore = defineStore("patientStore", {
   getters: {},
   actions: {
     getAllPatients() {
-      //use axios to get all patients
+      const authStore = useAuthStore();
+      let therapistId = authStore.user.username;
+      console.log(therapistId);
       axios
-        .get(`${this.rootURL}/getPatients`)
+        .get(`${this.rootURL}/getPatients?therapistId=${therapistId}`)
         .then((response) => {
           this.allPatients = response.data;
           console.log("response", response);
