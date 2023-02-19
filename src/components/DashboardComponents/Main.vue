@@ -11,7 +11,7 @@
     </div>
     <div v-else-if="chosenComponent === 'Upload New Video'">
         <v-container>
-            Upload New Video
+            <UploadVideo />
         </v-container>
     </div>
     <div v-else>
@@ -21,14 +21,13 @@
     </div>
 </template>
 <script>
-import { eventBus, ref } from 'vue';
-import { reactive } from 'vue';
-import { onMounted } from 'vue';
-import { state } from 'vue';
 import { useCommunicationStore } from '@/stores/communication';
 import { usePatientStore } from '@/stores/patientApi';
+import UploadVideo from '../DashboardComponents/DashboardMainComponents/UploadVideo.vue'
 export default {
-
+    components: {
+        UploadVideo
+    },
     data() {
         return {
             components: [
