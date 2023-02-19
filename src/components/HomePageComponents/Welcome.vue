@@ -1,12 +1,12 @@
 <template>
   <v-app>
-    <v-parallax class="parallax-container" height="900" :src="maiTherapistImage">
+    <v-parallax class="parallax-container" height="120vh" :src="maiTherapistImage">
       <div class="flex-column align-center ">
         <h1 class="header text-h2 mt-5 ">MAI Therapist</h1>
         <h4 class="subheading ">Revolutionizing Mental Health with MAI</h4>
       </div>
     </v-parallax>
-    <v-carousel height="800">
+    <v-carousel height="120vh">
       <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src" cover>
         <div class="d-flex fill-height justify-center align-center">
           <div class="intro-card">
@@ -22,17 +22,19 @@
     </v-carousel>
 
 
-    <v-parallax class="parallax-container" height="800" :src="howToImage">
-      <div class="flex-column align-center">
-        <h1 class="header text-h2 mt-10">HOW TO USE?</h1>
-
+    <div class="get-started-card" :src="howToImage">
+      <div>
+        <h1 class="header text-h3">LET'S GET STARTED</h1>
+        <p class="text">
+              Subscribe, Upload the Session Video Record, Get the Analyses
+            </p>
       </div>
-      <div class="bottom-button">
+      <div class="bottom-button flex-column align-center">
         <v-btn size="x-large" color="success" @click="$router.push('/about')">
           GET STARTED
         </v-btn>
       </div>
-    </v-parallax>
+    </div>
   </v-app>
 </template>
 <script>
@@ -43,7 +45,7 @@ export default {
     return {
       //source files ofc will be replaced xD
       maiTherapistImage: require('@/assets/header.jpg'),
-      howToImage: require('@/assets/how-to.jpg'),
+      howToImage: require('@/assets/question-mark.png'),
       items: [
         {
           src: require('@/assets/improved-understanding.jpg'),
@@ -87,8 +89,8 @@ export default {
     color: black;
     font-size: 2.5rem;
     font-weight: bolder;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 1vh;
+    padding-right: 1vh;
     background-color: rgba($color: #ADD8E6, $alpha: 0.5);
   }
 
@@ -97,21 +99,42 @@ export default {
     text-align: start;
     font-size: 1.2rem;
     font-weight: bolder;
-    padding: 10px;
+    padding: 1vh;
     background-color: rgba($color: #ADD8E6, $alpha: 0.5);
   }
 }
 
-.howto-card {
+.get-started-card {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 600px;
+  height: 105vh;
+  background-image: url('@/assets/question-mark.png');
+  background-position: center;
+
+  & .header {
+    color: black;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    margin-top: 15vh;
+  }
+
+  & .text {
+    justify-content: center;
+    color: black;
+    font-size: 1.8rem;
+    font-weight: bolder;
+    padding: 1vh;
+    margin-top: 20vh;
+  }
+
+  & .bottom-button {
+  position: relative;
+  margin-top: 40vh;
+}
 }
 
-.bottom-button {
-  position: absolute;
-  bottom: 50px;
-  left: 45%;
-}
+
 </style>

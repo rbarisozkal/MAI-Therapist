@@ -1,28 +1,28 @@
 <template>
     <div
-      class="bg-transparent rounded-xl p-5 sm:p-6 md:p-8 lg:p-12"
+      class="rounded-xl p-5 sm:p-6 md:p-8 lg:p-12"
       :class="
         pricing.recommended
-          ? 'border-4 border-blue-400	'
-          : 'border border-slate-100'
+          ? 'recommended-price'
+          : 'notrecommended-price'
       "
     >
-      <div class="mt-5 mb-5">
+      <div class="mt-5">
         <h2 class="font-bold text-3xl">{{ pricing.title }}</h2>
       </div>
       
   
-      <div class="font-regular text-xl mt-3 tracking-wide">
-        <span style="font-size: 200%">{{ pricing.currency }}</span>
-        <span style="font-size: 200%">{{ pricing.price }}</span>
+      <div class="currency">
+        <span>{{ pricing.currency }}</span>
+        <span>{{ pricing.price }}</span>
       </div>
   
-      <div class="text-xs opacity-50 mt-2">{{ pricing.description }}</div>
+      <div v-for="item in pricing.description" class="text">{{ item }}</div>
   
-      <div class="flex justify-center align-center mt-10 mb-10">
+      <div class="bottom-button">
         <v-btn
           rounded="pill"
-          color="secondary"
+          color="#32de84"
           @click="$router.push('/register')"
         >
           Buy {{ pricing.title }}
@@ -43,4 +43,30 @@
   };
   </script>
   
-  <style lang="scss"></style>
+<style scoped lang="scss">
+
+.recommended-price {
+  background-color: transparent;
+  border: 0.3vh solid #007FFF;
+}
+
+.notrecommended-price {
+  background-color: transparent;
+  border: 0.1vh solid grey;
+}
+
+.currency{
+  font-size: 2rem;
+  margin-bottom: 5vh;
+}
+
+.text{
+  font-size: 1.2rem;
+  margin-top: 1vh;
+}
+.bottom-button {
+  position: relative;
+  margin-top: 20%;
+  margin-bottom: 10%;
+}
+</style>
