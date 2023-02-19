@@ -1,18 +1,18 @@
 <template>
-  <div class="pricing-card">
-    <v-card height="80%">
+   <v-app>
+  <div class="pricing-container">
+    <v-card >
       <v-card-title class="header">
-        Pricing
+        PRICING
       </v-card-title>
-      <v-container class="plan-card">
-        <v-row>
+        <v-row  class="pricing-cards">
           <v-col :key="(pricing, idx)" v-for="(pricing, idx) in cards">
             <PricingCard :key="idx" :pricing="pricing" />
           </v-col>
         </v-row>
-      </v-container>
     </v-card>
   </div>
+  </v-app>
 </template>
   
 <script>
@@ -25,25 +25,25 @@ export default {
       {
         type: "Basic",
         title: "Basic",
-        price: 5,
+        price: 10,
         currency: "$",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        description: ["Save 20 clients","Get 50 analyses"],
         recommended: false,
       },
       {
         type: "Expanded",
         title: "Expanded",
-        price: 10,
+        price: 15,
         currency: "$",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        description: ["Save 100 clients","Get 500 analyses"],
         recommended: true,
       },
       {
         type: "Premium",
         title: "Premium",
-        price: 50,
+        price: 25,
         currency: "$",
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        description: ["Save unlimited clients","Get unlimited analyses"],
         recommended: false,
       },
     ],
@@ -52,24 +52,25 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.plan-card {
+.pricing-cards {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70%;
-  width: 90%;
+  width: 120vh;
+  margin: 10vh;
 }
 
-.pricing-card {
+.pricing-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 600px;
+  height: 100vh;
 }
 
 .header {
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 5vh;
+  margin-bottom: 3vh;
   font-size: xx-large;
   font-weight: bold;
 }
