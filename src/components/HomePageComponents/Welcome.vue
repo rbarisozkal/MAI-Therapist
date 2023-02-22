@@ -6,7 +6,7 @@
         <h4 class="subheading ">Revolutionizing Mental Health with MAI</h4>
       </div>
     </v-parallax>
-    <v-carousel height="120vh">
+    <v-carousel height="110vh">
       <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src" cover>
         <div class="d-flex fill-height justify-center align-center">
           <div class="intro-card">
@@ -22,19 +22,28 @@
     </v-carousel>
 
 
-    <div class="get-started-card" :src="howToImage">
-      <div>
+    <div class="get-started-card">
+      <div class="background-image">
         <h1 class="header text-h3">LET'S GET STARTED</h1>
-        <p class="text">
-              Subscribe, Upload the Session Video Record, Get the Analyses
+        <div class="text">
+        <p >
+              Subscribe
             </p>
-      </div>
-      <div class="bottom-button flex-column align-center">
-        <v-btn size="x-large" color="success" @click="$router.push('/about')">
+            <p >
+              Upload the Session Video Record
+            </p>
+            <p >
+              Get the Analyses
+            </p>
+          </div>
+      <div class="button-container">
+        <v-btn class="button" size="x-large" color="success" @click="$router.push('/about')">
           GET STARTED
         </v-btn>
       </div>
+      </div>
     </div>
+
   </v-app>
 </template>
 <script>
@@ -108,9 +117,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 105vh;
-  background-image: url('@/assets/question-mark.png');
-  background-position: center;
+  justify-content: center;
+  height: 80vh;
+  
 
   & .header {
     color: black;
@@ -118,22 +127,44 @@ export default {
     font-weight: bolder;
     padding-left: 1vh;
     padding-right: 1vh;
-    margin-top: 15vh;
+    padding-top: 8vh;
+    height: 33%;
   }
 
   & .text {
-    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
     color: black;
     font-size: 1.8rem;
     font-weight: bolder;
-    padding: 1vh;
-    margin-top: 20vh;
+    height: 33%;
   }
 
-  & .bottom-button {
+  & .button-container {
   position: relative;
-  margin-top: 40vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 33%;
 }
+
+& .button{
+  position: absolute;
+  bottom: 25%;
+}
+
+  & .background-image{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('@/assets/question-mark.png');
+  background-position: center;
+  height: 70vh;
+  width: 100vh; 
+  border: 0.4vh solid gold;
+  }
 }
 
 

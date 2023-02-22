@@ -6,7 +6,7 @@
     </div>
     <div v-else-if="chosenComponent === 'All Clients'">
         <v-container>
-            {{ getAllPatients }}
+            <AllClients />
         </v-container>
     </div>
     <div v-else-if="chosenComponent === 'Upload New Video'">
@@ -24,9 +24,11 @@
 import { useCommunicationStore } from '@/stores/communication';
 import { usePatientStore } from '@/stores/patientApi';
 import UploadVideo from '../DashboardComponents/DashboardMainComponents/UploadVideo.vue'
+import AllClients from './DashboardMainComponents/AllClients.vue';
 export default {
     components: {
-        UploadVideo
+        UploadVideo,
+        AllClients
     },
     data() {
         return {
