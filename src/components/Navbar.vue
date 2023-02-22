@@ -2,21 +2,27 @@
   <div>
     <v-app-bar class="px-10" color="deep-purple accent-4 position-relative" dark prominent>
       <div class="d-md-none d-lg-flex">
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click="drawer = !drawer"
+        class="d-flex d-md-none"></v-app-bar-nav-icon>
+         <!--Add this class to show menu icon only on xs and sm screen-->
       </div>
 
       <v-toolbar-title class="text-left">Mai Therapist</v-toolbar-title>
 
-      <v-spacer></v-spacer>
-
+      <v-tabs
+      v-model="tab"
+      align-with-title
+      class="d-none d-sm-flex">
+      <!--Add this class to show tabs only on medium screen and above-->
       <div class="link-list d-sm-none d-md-flex">
         <router-link v-for="item in menuItems" :key="item.title" :to="item.path">
           {{ item.title }}
         </router-link>
       </div>
+  </v-tabs>
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list nav dense>
         <v-list-item-group v-model="group" active-class="deep-purple--text text--accent-4">
           <v-list-item>
